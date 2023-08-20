@@ -1,0 +1,129 @@
+#signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 100vh;
+  background-image: url("../../../public/images/cleanb.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 5px;
+}
+
+#form2,
+#form3 {
+  display: none;
+}
+
+#form,
+#form2,
+#form3 {
+  width: 350px;
+  border: 1px solid black;
+  padding: 40px 25px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  color: white;
+  margin: 30px 5px;
+}
+
+#imgholder {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+}
+
+#imgholder img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+#eyeband {
+  width: 30px;
+  height: 10px;
+  position: absolute;
+  top: 30px;
+  left: calc(50% - 15px);
+  background-color: black;
+  display: none;
+}
+
+#heading {
+  text-align: center;
+  margin: 15px 0;
+}
+
+#signup input {
+  width: 100%;
+  font-size: 15px;
+  padding: 5px 0px;
+  border: none;
+  border-bottom: 1.5px solid white;
+  background-color: transparent !important;
+  color: white !important;
+  text-transform: none !important;
+}
+
+#signup input::placeholder {
+  color: white;
+}
+
+#signup input:active,
+input:focus {
+  border: none;
+  border-bottom: 1.5px solid white;
+  outline: none;
+}
+
+#signup input[type="password"] {
+  padding-right: 32px;
+}
+.password-layout {
+  position: relative;
+}
+#errortext,
+#passcheck {
+  color: rgb(255, 251, 0);
+  text-align: center;
+}
+#passicon,
+#repassicon {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  font-size: 20px;
+  cursor: pointer;
+}
+#submit {
+  background-color: #5cb85c !important;
+  width: 100%;
+  font-size: 15px;
+  padding: 5px 0px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+#generate {
+  color: white;
+  background-color: #5cb85c;
+  border: none;
+  padding: 5px 10px;
+  position: absolute;
+  width: 76px;
+  right: 25px;
+  cursor: pointer;
+}
+#forgotpassword {
+  float: right;
+  margin: 10px 0px;
+}
+#otp {
+  padding-right: 85px;
+}
+
+#signup a {
+  color: aqua;
+}

@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.cont h1 {
+  text-align: center;
+  font-family: "Castellar";
+  background-color: #17b56b;
+  padding: 20px;
+  margin-top: 0%;
+}
+.cont h2 {
+  text-align: center;
+  font-family: "Castellar";
+  background-color: #0ca833;
+  padding: 20px;
+  margin-top: 0%;
+}
+.cont .navbar {
+  margin-top: 1%;
+}
+.cont {
+  height: 100%;
+  min-height: 100vh;
+  /* background-image: url(/images/bgg.jpg); */
+  /* background-repeat: no-repeat; */
+  /* background-size: 100% 100%; */
+}
+.main {
+  text-align: center;
+  text-decoration: underline rgb(37, 179, 84) 5px;
+}
+.main strong {
+  font-size: 3rem;
+  color: rgb(208, 44, 214);
+}
+.cont p {
+  font-family: "Agency FB";
+  font-size: 1.5rem;
+  /* color: aliceblue; */
+}
+.cont strong {
+  font-size: 2rem;
+}
+.cont li {
+  font-size: 1.5rem;
+  /* color: aliceblue; */
+}
+.cont hr.design {
+  border: 0;
+  height: 5rem;
+  background-image: url(../../../public/images/design.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.List {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2rem;
+}
+.desc {
+  text-align: center;
+  font-size: 20px;
+  font-family: "Segoe UI";
+  color: rgb(14, 73, 87);
+}
+.cont img {
+  width: 350px;
+  height: 250px;
+  display: block;
+  margin: auto;
+}
+/*hs*/
+.services {
+  width: 100%;
+}
+
+.services .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  gap: 2rem;
+}
+
+.services .box-container .cart {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  padding: 2.5rem;
+}
+
+.services .box-container .cart i {
+  color: var(--green);
+  font-size: 7rem;
+  padding-bottom: 0.5rem;
+}
+
+.services .box-container .cart h3 {
+  color: var(--black);
+  font-size: 5.5rem;
+  padding: 1rem 0;
+}
+
+.services .box-container .cart p {
+  color: var(--light-color);
+  font-size: 5.4rem;
+  line-height: 2;
+}
+
+.img {
+  display: block;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+}
+
+@media screen and (max-width: 700px) {
+  .List {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto));
+    gap: 2rem;
+  }
+}

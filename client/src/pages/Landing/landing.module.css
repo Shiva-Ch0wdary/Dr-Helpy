@@ -1,0 +1,153 @@
+#landing {
+  height: 100%;
+  min-height: 100vh;
+  overflow-y: hidden;
+  /* display: flex; */
+  /* grid-template-columns: calc(100vw / 3), 1fr; */
+}
+#header {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  padding: 5px;
+  color: #6c63ff;
+  /* background-color: rgb(194, 181, 181); */
+  /* backdrop-filter: blur(20px); */
+}
+#header img {
+  height: 30px;
+  width: 30px;
+  margin: 0 10px;
+}
+#cont {
+  display: flex;
+  padding: 5px;
+  height: 100%;
+  min-height: 100vh;
+}
+
+#description,
+#imgholder {
+  /* width:100vh; */
+  height: 100vh;
+}
+#description {
+  width: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#description h1 {
+  font-size: 40px;
+}
+
+#description h2 {
+  font-size: 25px;
+}
+
+#service {
+  text-decoration: none;
+  color: white;
+  background-color: #6c63ff;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+#wrapper {
+  display: flex;
+  font-size: 20px;
+  margin: 10px 0;
+  align-items: center;
+}
+
+#wrapper ul {
+  list-style: none;
+  margin-left: -2px;
+  color: #6c63ff;
+}
+
+#dynamic-text li {
+  position: relative;
+  animation-name: slide;
+  animation-duration: 7.5s;
+  animation-timing-function: steps(3);
+  top: 0;
+  animation-iteration-count: infinite;
+}
+#dynamic-text {
+  line-height: 20px;
+  height: 20px;
+  font-size: 20px;
+  overflow: hidden;
+}
+#wrapper li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid black;
+  background-color: white;
+  animation-name: typing;
+  animation-duration: 2.5s;
+  animation-timing-function: steps(17);
+  /* animation-delay: 1s; */
+  animation-iteration-count: infinite;
+}
+#description span {
+  color: #6c63ff;
+}
+
+#imgholder {
+  width: 55vw;
+}
+
+#imgholder img {
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes typing {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 120%;
+  }
+}
+@keyframes slide {
+  100% {
+    top: -60px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #description {
+    width: 50vw;
+  }
+  #imgholder {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #description h1 {
+    font-size: 33px;
+  }
+}
+@media screen and (max-width: 700px) {
+  #cont {
+    flex-direction: column;
+    align-items: center;
+  }
+  #description {
+    height: 300px;
+    width: 90vw;
+  }
+  #imgholder {
+    height: 300px;
+    width: 90vw;
+  }
+}

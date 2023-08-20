@@ -1,0 +1,140 @@
+#doctor {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: #d7d2d2cc;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #e4e4e4d0;
+  padding: 40px 16px;
+  /* background-image: url("./images/bg2.jpg"); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#doctor h1 {
+  padding: 20px;
+  /* background: #15cf5c; */
+  font-size: 50px;
+  color: #334172;
+  font-weight: bold;
+  text-align: center;
+
+  /* background-color: rgb(18, 235, 47); */
+}
+
+.abc {
+  display: flex;
+  /* Responsive behaviour */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15); */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding: 16px;
+  margin: 75px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5),
+    0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-image img {
+  width: 100%;
+  transform: scale(1.2);
+}
+.text p {
+  font-size: 20px;
+  font-family: berlin sans fb;
+  text-align: left;
+  color: #101111;
+  margin-bottom: 1rem;
+}
+#doctor p {
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  color: #101111;
+  text-align: center;
+}
+
+.name {
+  margin-top: 80px;
+  font-size: 1.4em;
+  color: #333;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#doctor a {
+  margin: 12px 8px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s;
+}
+
+#doctor a:hover {
+  opacity: 0.5;
+}
+
+#doctor a i {
+  display: inline-block;
+
+  color: #fff;
+  font-size: 1.4em;
+}
+
+/* Social media colors */
+/* button.instagram{
+ background-color: #eeecea;
+ color: #d3263a;
+} */
+
+#doctor a.facebook {
+  background-color: #24292e;
+}
+
+#doctor a.twitter {
+  background-color: #1da1f2;
+}
+
+#doctor a.instagram {
+  background-color: #141212;
+}

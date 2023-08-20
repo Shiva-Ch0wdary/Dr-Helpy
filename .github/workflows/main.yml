@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Backend_CI_CD
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: ["master"]
+    paths: ["server/**"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Dr. Helpy Backend
+        working-directory: ./server
+        run: echo "Dr. Helpy Backend"
+
+      # Runs a set of commands using the runners shell
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+      - name: create env file
+        working-directory: ./server
+        run: |
+          touch .env
+          echo PASSWORD=${{ secrets.PASSWORD }} >> .env
+          echo DATABASENAME=${{ secrets.DATABASENAME }} >> .env
+          echo AUTHUSER=${{ secrets.AUTHUSER }} >> .env
+          echo AUTHPASSWORD=${{ secrets.AUTHPASSWORD }} >> .env
+          echo JWTKEY=${{ secrets.JWTKEY }} >> .env
+          echo JWTREFRESHKEY=${{ secrets.JWTREFRESHKEY }} >> .env
+          echo STRIPESECRETEKEY=${{ secrets.STRIPESECRETEKEY }} >> .env
+          echo CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }} >> .env
+          echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env
+          echo CLOUDINARY_API_SECRETKEY=${{ secrets.CLOUDINARY_API_SECRETKEY }} >> .env
+          echo SAMPLETOKEN=${{ secrets.SAMPLETOKEN }} >> .env
+          echo SAMPLEOTP=${{ secrets.SAMPLEOTP }} >> .env
+          echo CLIENT_BASE_URL=${{ secrets.CLIENT_BASE_URL }} >> .env
+          cat .env
+
+      - name: NPM install, build and test
+        working-directory: ./server
+        run: |
+          npm install --force
+          npm test
+  deploy:
+    name: Deploy
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.SERVICE_ID }} # Can be found as part of the Deploy Hook
+          api-key: ${{ secrets.RENDER_API_KEY }} # Create your API key in Render Dashboard > Account Settings

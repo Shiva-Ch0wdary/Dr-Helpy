@@ -1,0 +1,985 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dr Helpy Backend API",
+    "description": "Dr Helpy is a MERN website for a medical store is a comprehensive platform that offers online payments, recommendations for cures, and a range of integrated features including add-to-cart, rating, e-payment, and JWT Authentication. With this platform, customers can browse through an extensive inventory of medical products, receive personalized recommendations for cures, and complete transactions quickly and securely using a variety of payment options. The website also offers a seamless and user-friendly experience with features like rating and authentication, ensuring that customers can easily find and purchase the products they need while enjoying a high level of security and convenience.",
+    "version": "2.0.0",
+    "contact": {
+      "name": "John doe"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4001/",
+      "description": "Local server"
+    },
+    {
+      "url": "https://drhelpy-backend.onrender.com/",
+      "description": "Deployed server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Products",
+      "description": "API for products in the system"
+    },
+    {
+      "name": "Orders and Payments",
+      "description": "API for orders and payments in the system"
+    },
+    {
+      "name": "Auth",
+      "description": "API for authentication in the system"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/api-docs": {
+      "get": {
+        "summary": "Get API Documentation of Dr Helpy",
+        "description": "Get API Documentation of Dr Helpy",
+        "responses": {
+          "200": {
+            "description": "API Documentation"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Get all orders",
+        "description": "Get all orders",
+        "tags": ["Orders and Payments"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Id of order",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "Email of user",
+                        "example": "abc@gmail.com"
+                      },
+                      "order": {
+                        "type": "string",
+                        "description": "Order of user",
+                        "example": "[{\"_id\":\"5f9f1b0b0b9b9c0b1c8b4b5a\",\"name\":\"Paracetamol\",\"price\":10,\"quantity\":1,\"image\":\"iVBORw0KGgoAAAANSUhEUgAAAOMAAACOCAYAAADD5L/IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQ\"},{\"_id\":\"5f9f1b0b0b9b9c0b1c8b4b5a\",\"name\":\"Paracetamol\",\"price\":10,\"quantity\":1,\"image\":\"iVBORw0KGgoAAAANSUhEUgAAAOMAAACOCAYAAADD5L/IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQ\"}]"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Date of order",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Date of order",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authenticated!"
+          },
+          "500": {
+            "error": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/confirm": {
+      "post": {
+        "summary": "Confirm order",
+        "description": "Confirm order",
+        "tags": ["Orders and Payments"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/checkout": {
+      "post": {
+        "summary": "Checkout order",
+        "description": "Checkout order",
+        "tags": ["Orders and Payments"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order checkout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "description": "Get all users",
+        "tags": ["Users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Id of user",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of user",
+                        "example": "John Doe"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "Email of user",
+                        "example": "abc@gmail.com"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/block": {
+      "post": {
+        "summary": "Block user",
+        "description": "Block user",
+        "tags": ["Admin"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User blocked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unblock": {
+      "post": {
+        "summary": "Unblock user",
+        "description": "Unblock user",
+        "tags": ["Admin"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "User unblocked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addproduct": {
+      "post": {
+        "summary": "Add product",
+        "description": "   product",
+        "tags": ["Products"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "TestProduct"
+                  },
+                  "price": {
+                    "type": "string",
+                    "example": "TestPrice"
+                  },
+                  "desc": {
+                    "type": "string",
+                    "example": "TestDesc"
+                  },
+                  "uses": {
+                    "type": "string",
+                    "example": "TestUses"
+                  },
+                  "img": {
+                    "type": "string",
+                    "example": "TestImg"
+                  },
+                  "rating": {
+                    "type": "string",
+                    "example": "TestRating"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteproduct": {
+      "delete": {
+        "summary": "Delete product",
+        "description": "Delete product",
+        "tags": ["Products"],
+        "responses": {
+          "200": {
+            "description": "Product deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist": {
+      "get": {
+        "summary": "Get all products",
+        "description": "Get all products",
+        "tags": ["Products"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Id of product",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of product",
+                        "example": "Product 1"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "Price of product",
+                        "example": 100
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of product",
+                        "example": "Product 1 description"
+                      },
+                      "image": {
+                        "type": "string",
+                        "description": "Image of product",
+                        "example": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Date of product",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Date of product",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/{id}": {
+      "get": {
+        "summary": "Get product by id",
+        "description": "Get product by id",
+        "tags": ["Products"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "TestProduct"
+                  },
+                  "price": {
+                    "type": "string",
+                    "example": "TestPrice"
+                  },
+                  "desc": {
+                    "type": "string",
+                    "example": "TestDesc"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "Testurl"
+                  },
+                  "rating": {
+                    "type": "string",
+                    "example": "TestRating"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of product",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Id of product",
+                      "example": "641ff26495935a64047739a3"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of product",
+                      "example": "Product 1"
+                    },
+                    "price": {
+                      "type": "number",
+                      "description": "Price of product",
+                      "example": 100
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of product",
+                      "example": "Product 1 description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "description": "Image of product",
+                      "example": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "Date of product",
+                      "example": "2020-11-01T10:00:00.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Date of product",
+                      "example": "2020-11-01T10:00:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/addreview": {
+      "post": {
+        "summary": "Add review",
+        "description": "Add review",
+        "tags": ["Reviews"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "string",
+                    "example": "TestProductid"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "TestProduct"
+                  },
+                  "rating": {
+                    "type": "string",
+                    "example": "TestRating"
+                  },
+
+                  "desc": {
+                    "type": "string",
+                    "example": "TestDesc"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of product",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Review added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/review": {
+      "get": {
+        "summary": "Get all reviews",
+        "description": "Get all reviews",
+        "tags": ["Reviews"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Id of review",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "productId": {
+                        "type": "string",
+                        "description": "Id of product",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of review",
+                        "example": "Review 1"
+                      },
+                      "rating": {
+                        "type": "number",
+                        "description": "Rating of review",
+                        "example": 5
+                      },
+                      "comment": {
+                        "type": "string",
+                        "description": "Comment of review",
+                        "example": "Review 1 comment"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Date of review",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Date of review",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/disease": {
+      "get": {
+        "summary": "Get all diseases",
+        "description": "Get all diseases",
+        "tags": ["Diseases"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Diseases",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Id of disease",
+                        "example": "641ff26495935a64047739a3"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of disease",
+                        "example": "Disease 1"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of disease",
+                        "example": "Disease 1 description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Date of disease",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Date of disease",
+                        "example": "2020-11-01T10:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/disease/{id}": {
+      "get": {
+        "summary": "Get disease by id",
+        "description": "Get disease by id",
+        "tags": ["Diseases"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of disease",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disease",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Id of disease",
+                      "example": "641ff26495935a64047739a3"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of disease",
+                      "example": "Disease 1"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of disease",
+                      "example": "Disease 1 description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "Date of disease",
+                      "example": "2020-11-01T10:00:00.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Date of disease",
+                      "example": "2020-11-01T10:00:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateuser": {
+      "put": {
+        "summary": "Update user",
+        "description": "Update user",
+        "tags": ["Users", "Admin"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "Logout",
+        "description": "Logout",
+        "tags": ["Users", "Auth"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login",
+        "description": "Login",
+        "tags": ["Users", "Auth"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "TestEmail"
+                  },
+                  "passsword": {
+                    "type": "string",
+                    "example": "TestPassword"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "signup": {
+      "post": {
+        "summary": "Signup",
+        "description": "Signup",
+        "tags": ["Users", "Auth"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "type": "string",
+                    "example": "TestFname"
+                  },
+                  "lname": {
+                    "type": "string",
+                    "example": "TestLname"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "TestEmail"
+                  },
+                  "passsword1": {
+                    "type": "string",
+                    "example": "TestP1"
+                  },
+                  "passsword2": {
+                    "type": "string",
+                    "example": "TestP2"
+                  },
+                  "phno": {
+                    "type": "string",
+                    "example": "TestPhno"
+                  },
+                  "otp": {
+                    "type": "string",
+                    "example": "TestOtp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "User signed up",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Message",
+                "example": "success"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
