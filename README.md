@@ -25,7 +25,7 @@ MERN Medical Store is a web-based application that allows users to buy medical p
 https://dr-helpy.vercel.app
 
 ## Video Demonstration
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/0BZUGqwCqcs/0.jpg)]([https://www.youtube.com/watch?v=0BZUGqwCqcs](https://drive.google.com/file/d/183CnZzL6eOKy-AmRPyPOg-5W8qfoWsW9/view?usp=drive_link))
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/0BZUGqwCqcs/0.jpg)](https://www.youtube.com/watch?v=0BZUGqwCqcs)
 
 ## Getting Started
 1. Clone the repository to your local machine.
